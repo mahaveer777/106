@@ -1,0 +1,20 @@
+import csv
+import numpy as np
+
+def Correlation(file):
+  ml=[]
+  hr=[]
+  with open(file) as f:
+    reader=csv.DictReader(f)
+   
+    for x in reader:
+      ml.append(float(x["Coffee in ml"]))
+      hr.append(float(x["sleep in hours"]))
+  return{"x":ml,"y":hr}
+def find(datasource):
+  cr=np.corrcoef(datasource["x"],datasource["y"])
+  print("Correlation between Cofee(ml) and Sleep(hours) is--->"+str(cr))
+def setup():
+   v=Correlation("data.csv")
+   find(v)
+setup()   
